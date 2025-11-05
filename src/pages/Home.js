@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 
 // Add shine animation CSS and responsive styles
 const shineStyles = `
@@ -16,67 +17,162 @@ const shineStyles = `
     animation: shine 2s infinite;
   }
   
-  /* Responsive styles */
-  @media (max-width: 768px) {
+  /* Enhanced Responsive styles for better mobile experience */
+  
+  /* Tablet styles */
+  @media (max-width: 1024px) {
     .hero-title {
-      font-size: 2.5rem !important;
+      font-size: 3.5rem !important;
+      line-height: 1.1 !important;
     }
     .hero-subtitle {
-      font-size: 1.2rem !important;
+      font-size: 1.5rem !important;
+    }
+    .section-padding {
+      padding: 4rem 2rem !important;
+    }
+    .about-grid {
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
+      gap: 2rem !important;
+    }
+    .solutions-grid {
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
+      gap: 2rem !important;
+    }
+    .stats-grid {
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)) !important;
+      gap: 1.5rem !important;
+    }
+  }
+  
+  /* Mobile styles */
+  @media (max-width: 768px) {
+    .hero-title {
+      font-size: 2.8rem !important;
+      line-height: 1.2 !important;
+      letter-spacing: 0.05em !important;
+    }
+    .hero-subtitle {
+      font-size: 1.3rem !important;
+      line-height: 1.3 !important;
     }
     .hero-star {
       font-size: 1.2rem !important;
-    }
-    .hero-button {
-      padding: 1rem 2rem !important;
-      font-size: 1rem !important;
+      margin: 0 0.3rem !important;
     }
     .section-padding {
-      padding: 3rem 1rem !important;
+      padding: 3rem 1.5rem !important;
     }
     .about-grid {
       grid-template-columns: 1fr !important;
       gap: 1.5rem !important;
     }
     .solutions-grid {
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)) !important;
-      gap: 1.5rem !important;
+      grid-template-columns: 1fr !important;
+      gap: 2rem !important;
     }
     .stats-grid {
       grid-template-columns: repeat(2, 1fr) !important;
       gap: 1rem !important;
     }
+    .contact-form {
+      max-width: 100% !important;
+    }
+    .map-container {
+      height: 250px !important;
+    }
   }
   
+  /* Small mobile styles */
   @media (max-width: 480px) {
     .hero-title {
-      font-size: 2rem !important;
-      letter-spacing: 0.05em !important;
+      font-size: 2.2rem !important;
+      letter-spacing: 0.02em !important;
+      line-height: 1.1 !important;
+    }
+    .hero-subtitle {
+      font-size: 1.1rem !important;
+      line-height: 1.2 !important;
+    }
+    .hero-star {
+      font-size: 1rem !important;
+      margin: 0 0.2rem !important;
+    }
+    .section-padding {
+      padding: 2rem 1rem !important;
+    }
+    .solutions-grid {
+      grid-template-columns: 1fr !important;
+      gap: 1.5rem !important;
+    }
+    .stats-grid {
+      grid-template-columns: 1fr !important;
+      gap: 1rem !important;
+    }
+    .contact-info {
+      padding: 1.5rem !important;
+    }
+    .map-container {
+      height: 200px !important;
+    }
+  }
+  
+  /* Extra small devices */
+  @media (max-width: 360px) {
+    .hero-title {
+      font-size: 1.8rem !important;
+      letter-spacing: 0.01em !important;
     }
     .hero-subtitle {
       font-size: 1rem !important;
     }
-    .hero-star {
-      font-size: 1rem !important;
-      margin: 0 0.3rem !important;
-    }
-    .hero-button {
-      padding: 0.8rem 1.5rem !important;
-      font-size: 0.9rem !important;
-    }
     .section-padding {
-      padding: 2rem 0.5rem !important;
+      padding: 1.5rem 0.8rem !important;
     }
-    .solutions-grid {
-      grid-template-columns: 1fr !important;
+    .solutions-card {
+      padding: 1.5rem 1rem !important;
     }
-    .stats-grid {
-      grid-template-columns: 1fr !important;
+    .hero-inspiring {
+      font-size: 2.2rem !important;
+    }
+    .hero-to {
+      font-size: 1.2rem !important;
+    }
+    .hero-dream {
+      font-size: 1.8rem !important;
+    }
+  }
+  
+  /* Responsive heading parts */
+  @media (max-width: 768px) {
+    .hero-inspiring {
+      font-size: 3.5rem !important;
+    }
+    .hero-to {
+      font-size: 1.5rem !important;
+    }
+    .hero-dream {
+      font-size: 2.5rem !important;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .hero-inspiring {
+      font-size: 2.8rem !important;
+    }
+    .hero-to {
+      font-size: 1.3rem !important;
+    }
+    .hero-dream {
+      font-size: 2rem !important;
     }
   }
 `;
 
-const Home = () => (
+const Home = () => {
+  const navigate = useNavigate();
+
+  return (
   <div style={{ fontFamily: 'Arial, sans-serif' }}>
     {/* Add CSS styles */}
     <style>{shineStyles}</style>
@@ -89,7 +185,7 @@ const Home = () => (
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundImage: 'url(/images/homeback.jpeg)',
+        backgroundImage: 'url(/images/home.jpg)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
@@ -112,7 +208,7 @@ const Home = () => (
         }}
       />
       <div style={{ position: 'relative', zIndex: 2 }}>
-      {/* Creative CHILDCRAFT heading with multiple effects */}
+      {/* Creative Inspiring heading with multiple effects */}
       <motion.div
         initial={{ opacity: 0, scale: 0.5, rotateX: -90 }}
         animate={{ opacity: 1, scale: 1, rotateX: 0 }}
@@ -124,6 +220,8 @@ const Home = () => (
           style={{
             fontSize: '4.5rem',
             fontWeight: 900,
+            fontFamily: '"Lucida Handwriting", "Brush Script MT", cursive',
+            fontStyle: 'italic',
             background: 'linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #f9ca24, #f0932b)',
             backgroundSize: '300% 300%',
             WebkitBackgroundClip: 'text',
@@ -133,6 +231,7 @@ const Home = () => (
             textAlign: 'center',
             position: 'relative',
             textShadow: 'none',
+            lineHeight: 1.2,
           }}
           animate={{
             backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
@@ -143,7 +242,9 @@ const Home = () => (
             ease: "linear",
           }}
         >
-          CHILDCRAFT
+          <div className="hero-inspiring" style={{ fontSize: '5.5rem' }}>Inspiring</div>
+          <div className="hero-to" style={{ fontSize: '2rem', margin: '0.2rem 0' }}>to</div>
+          <div className="hero-dream" style={{ fontSize: '3.5rem' }}>Dream, Learn And Grow</div>
         </motion.h1>
         
         {/* Glowing border effect */}
@@ -225,27 +326,16 @@ const Home = () => (
             WebkitTextFillColor: 'transparent',
             backgroundClip: 'text',
           }}>
-            Publishers
           </span>
           <span 
-            className="hero-star"
             style={{ 
               color: '#4ecdc4',
               margin: '0 0.5rem',
               fontSize: '1.8rem',
             }}
           >
-            ✦
           </span>
-          <span style={{ 
-            background: 'linear-gradient(90deg, #4ecdc4, #45b7d1, #4ecdc4)',
-            backgroundSize: '200% 100%',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            backgroundClip: 'text',
-          }}>
-            Pvt Ltd
-          </span>
+       
         </motion.p>
         
         {/* Animated underline */}
@@ -263,63 +353,6 @@ const Home = () => (
           animate={{ width: '80%' }}
           transition={{ duration: 1.5, delay: 1 }}
         />
-      </motion.div>
-
-      {/* Creative PORTFOLIO button with shine effect */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.8, rotateY: -45 }}
-        animate={{ opacity: 1, scale: 1, rotateY: 0 }}
-        transition={{ duration: 1, delay: 0.8, type: "spring", bounce: 0.3 }}
-        style={{ perspective: '1000px' }}
-      >
-        <motion.button
-          className="relative overflow-hidden hero-button"
-          style={{
-            padding: '1.5rem 3rem',
-            fontSize: '1.4rem',
-            fontWeight: 800,
-            color: '#ffffff',
-            background: 'linear-gradient(135deg, #e23a03 0%, #9c1607 100%)',
-            border: 'none',
-            borderRadius: '25px',
-            cursor: 'pointer',
-            position: 'relative',
-            letterSpacing: '0.2em',
-            textTransform: 'uppercase',
-            boxShadow: '0 15px 35px rgba(226, 58, 3, 0.3), inset 0 -5px 15px rgba(0, 0, 0, 0.2)',
-            transformStyle: 'preserve-3d',
-          }}
-          whileHover={{ 
-            scale: 1.08,
-            rotateX: 5,
-            rotateY: 5,
-            boxShadow: '0 20px 45px rgba(226, 58, 3, 0.4), inset 0 -8px 20px rgba(0, 0, 0, 0.3)',
-            transition: { duration: 0.3 }
-          }}
-          whileTap={{ 
-            scale: 0.95,
-            rotateX: -5,
-            transition: { duration: 0.1 }
-          }}
-        >
-          <span style={{ position: 'relative', zIndex: 10 }}>
-            📂 PORTFOLIO
-          </span>
-
-          {/* Continuous Shine Line */}
-          <span 
-            className="animate-shine absolute top-0 left-[-100%] w-[80px] h-full bg-gradient-to-r from-transparent via-white/60 to-transparent transform skew-x-[-20deg]"
-            style={{
-              background: 'linear-gradient(to right, transparent, rgba(255, 255, 255, 0.6), transparent)',
-              transform: 'skewX(-20deg)',
-              width: '80px',
-              height: '100%',
-              position: 'absolute',
-              top: 0,
-              left: '-100%',
-            }}
-          />
-        </motion.button>
       </motion.div>
       </div>
     </section>
@@ -373,7 +406,7 @@ const Home = () => (
             OUR VISION
           </h4>
           <img 
-            src="/images/vision.jpeg" 
+            src="/images/mdviss.jpeg" 
             alt="Our Vision" 
             style={{ 
               width: '100%', 
@@ -384,8 +417,8 @@ const Home = () => (
             }} 
           />
           <p style={{ color: '#4a5568', lineHeight: 1.6 }}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
-          </p>
+To nurture young minds with knowledge, creativity and values through innovative educational resources. We aspire to empower teachers, inspire learners and contribute to build a brighter tomorrow.”
+Childcraft Hallmark Publishers          </p>
         </motion.div>
 
         <motion.div
@@ -403,7 +436,7 @@ const Home = () => (
             OUR MISSION
           </h4>
           <img 
-            src="/images/mision.jpeg" 
+            src="/images/mdmiss.jpeg" 
             alt="Our Mission" 
             style={{ 
               width: '100%', 
@@ -414,8 +447,7 @@ const Home = () => (
             }} 
           />
           <p style={{ color: '#4a5568', lineHeight: 1.6 }}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.
-          </p>
+To touch every classroom with creativity, care and inspiration. We strive to empower teachers with effective tools and guide students on a joyful journey of discovery — making learning not just a task, but a lifelong adventure.          </p>
         </motion.div>
 
         <motion.div
@@ -433,7 +465,7 @@ const Home = () => (
             OUR SERVICES
           </h4>
           <img 
-            src="/images/smb.jpeg" 
+            src="/images/mdsvss.jpeg" 
             alt="Our Services" 
             style={{ 
               width: '100%', 
@@ -444,8 +476,7 @@ const Home = () => (
             }} 
           />
           <p style={{ color: '#4a5568', lineHeight: 1.6 }}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.
-          </p>
+We are dedicated to supporting schools, educators, and learners through a range of solutions. These include textbook publishing with support materials for teachers, as well as workshops and training programs to empower educators.</p>
         </motion.div>
       </div>
     </section>
@@ -474,8 +505,7 @@ const Home = () => (
             textShadow: '2px 2px 4px rgba(0,0,0,0.3)',
           }}
         >
-          DIGITAL SCHOOL RESOURCES
-        </motion.h3>
+OUR PORTFOLIO        </motion.h3>
         
         <div 
           className="solutions-grid"
@@ -487,15 +517,10 @@ const Home = () => (
           }}
         >
           {[
-            { title: 'QUESTION PAPER GENERATOR', desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit tempor incididunt.', icon: '📝', color: '#ff6b6b' },
-            { title: 'VIRTUAL TOUR GUIDE', desc: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua enim.', icon: '🗺️', color: '#4ecdc4' },
-            { title: 'BOOKS CLASSES 1-8', desc: 'Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi.', icon: '📚', color: '#45b7d1' },
-            { title: 'KINDERGARTEN', desc: 'Duis aute irure dolor reprehenderit in voluptate velit esse cillum dolore.', icon: '🎨', color: '#f9ca24' },
-            { title: 'ANIMATIONS', desc: 'Excepteur sint occaecat cupidatat non proident sunt in culpa qui officia.', icon: '🎬', color: '#f0932b' },
-            { title: 'WORKSHEETS', desc: 'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis.', icon: '📄', color: '#eb4d4b' },
-            { title: 'FLASH CARDS', desc: 'Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod.', icon: '🃏', color: '#6c5ce7' },
-            { title: 'WORKSHOPS', desc: 'Ut enim ad minim veniam quis nostrud exercitation ullamco laboris.', icon: '🎯', color: '#a29bfe' },
-            { title: 'ORDER FORM', desc: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.', icon: '📋', color: '#fd79a8' },
+            { title: 'KG SECTION', desc: 'Our Kindergarten Series is thoughtfully designed to make early learning a joyful, meaningful, and holistic experience.', icon: '👶', color: '#ff6b6b' },
+            { title: 'COMPUTER SERIES', desc: 'Our Computer Series is designed to build digital literacy from the ground up, combining conceptual clarity with hands-on learning.', icon: '🖥️', color: '#4ecdc4' },
+            { title: 'HINDI SERIES', desc: 'Our Hindi Series is designed to make language learning engaging, culturally rich, and conceptually strong.', icon: 'अ', color: '#45b7d1' },
+            { title: 'MALAYALAM SERIES', desc: 'Our Malayalam Series is crafted to nurture a love for mother tongue and literature while strengthening the linguistic foundation in young learners..', icon: 'അ', color: '#fd79a8' },
           ].map((service, index) => (
             <motion.div
               key={index}
@@ -517,7 +542,12 @@ const Home = () => (
                 position: 'relative',
                 transformStyle: 'preserve-3d',
                 backdropFilter: 'blur(10px)',
+                minHeight: '300px',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
               }}
+              className="solutions-card"
               whileHover={{
                 scale: 1.05,
                 rotateX: 5,
@@ -661,10 +691,9 @@ const Home = () => (
           }}
         >
           {[
-            { number: '50+', label: 'PROJECTS' },
-            { number: '25+', label: 'CLIENTS' },
-            { number: '15+', label: 'TEAM MEMBERS' },
-            { number: '5+', label: 'YEARS EXPERIENCE' },
+            { number: '250+', label: 'TITTLES' },
+            { number: '1200+', label: 'SCHOOLS' },
+            { number: '10+', label: 'YEARS OF SERVICE' },
           ].map((stat, index) => (
             <motion.div
               key={index}
@@ -686,6 +715,7 @@ const Home = () => (
 
     {/* Contact Section */}
     <section
+      id="contact-section"
       className="section-padding"
       style={{
         padding: '5rem 2rem',
@@ -711,6 +741,7 @@ const Home = () => (
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
+          className="contact-info"
           style={{
             padding: '2rem',
             background: '#f8fafc',
@@ -719,23 +750,49 @@ const Home = () => (
           }}
         >
           <p style={{ color: '#4a5568', marginBottom: '1rem' }}>
-            <strong>Location:</strong> Lorem ipsum dolor sit amet consectetur
+            <strong>Location:</strong> KRL Road, Kundanur Jn , Kochi
           </p>
           <p style={{ color: '#4a5568', marginBottom: '1rem' }}>
-            <strong>Email:</strong> lorem@ipsum.dolor.sit
+            <strong>Email:</strong> Info@childcraftbooks.com
           </p>
           <p style={{ color: '#4a5568', marginBottom: '1rem' }}>
-            <strong>Phone:</strong> +123 456 789 0123
+            <strong>Phone:</strong> +91 95392 72059
           </p>
           <p style={{ color: '#4a5568' }}>
-            <strong>Working Hours:</strong> Lorem ipsum dolor sit amet
+            <strong>Working Hours:</strong> Mon - Sat: 9:00 AM - 5:30 PM
           </p>
+        </motion.div>
+
+        {/* Google Maps Embed */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="map-container"
+          style={{
+            marginBottom: '2rem',
+            borderRadius: '12px',
+            overflow: 'hidden',
+            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+          }}
+        >
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3946.4!2d76.3150973!3d9.9364236!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b08733c0cbe5baf:0xd4532aeb9b4db2a4!2sChildcraft%20Hallmark%20Publishers!5e0!3m2!1sen!2sin!4v1699190825123!5m2!1sen!2sin"
+            width="100%"
+            height="400"
+            style={{ border: 0 }}
+            allowFullScreen=""
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            title="CHILDCRAFT HALLMARKPUBLISHERS Location - Kundanoor"
+          ></iframe>
         </motion.div>
 
         <motion.button
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
+          onClick={() => navigate('/contact')}
           style={{
             padding: '1rem 2rem',
             fontSize: '1.1rem',
@@ -755,6 +812,7 @@ const Home = () => (
       </div>
     </section>
   </div>
-);
+  );
+};
 
 export default Home;
