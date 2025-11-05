@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-// Add shine animation CSS
+// Add shine animation CSS and responsive styles
 const shineStyles = `
   @keyframes shine {
     0% {
@@ -14,6 +14,65 @@ const shineStyles = `
   
   .animate-shine {
     animation: shine 2s infinite;
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 768px) {
+    .hero-title {
+      font-size: 2.5rem !important;
+    }
+    .hero-subtitle {
+      font-size: 1.2rem !important;
+    }
+    .hero-star {
+      font-size: 1.2rem !important;
+    }
+    .hero-button {
+      padding: 1rem 2rem !important;
+      font-size: 1rem !important;
+    }
+    .section-padding {
+      padding: 3rem 1rem !important;
+    }
+    .about-grid {
+      grid-template-columns: 1fr !important;
+      gap: 1.5rem !important;
+    }
+    .solutions-grid {
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)) !important;
+      gap: 1.5rem !important;
+    }
+    .stats-grid {
+      grid-template-columns: repeat(2, 1fr) !important;
+      gap: 1rem !important;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .hero-title {
+      font-size: 2rem !important;
+      letter-spacing: 0.05em !important;
+    }
+    .hero-subtitle {
+      font-size: 1rem !important;
+    }
+    .hero-star {
+      font-size: 1rem !important;
+      margin: 0 0.3rem !important;
+    }
+    .hero-button {
+      padding: 0.8rem 1.5rem !important;
+      font-size: 0.9rem !important;
+    }
+    .section-padding {
+      padding: 2rem 0.5rem !important;
+    }
+    .solutions-grid {
+      grid-template-columns: 1fr !important;
+    }
+    .stats-grid {
+      grid-template-columns: 1fr !important;
+    }
   }
 `;
 
@@ -36,7 +95,7 @@ const Home = () => (
         backgroundRepeat: 'no-repeat',
         position: 'relative',
         textAlign: 'center',
-        padding: '2rem',
+        padding: '2rem 1rem',
         borderBottom: '1px solid #e2e8f0',
       }}
     >
@@ -61,6 +120,7 @@ const Home = () => (
         style={{ position: 'relative', marginBottom: '1rem' }}
       >
         <motion.h1
+          className="hero-title"
           style={{
             fontSize: '4.5rem',
             fontWeight: 900,
@@ -147,6 +207,7 @@ const Home = () => (
         style={{ position: 'relative', marginBottom: '3rem' }}
       >
         <motion.p
+          className="hero-subtitle"
           style={{
             fontSize: '2rem',
             fontWeight: 700,
@@ -166,11 +227,14 @@ const Home = () => (
           }}>
             Publishers
           </span>
-          <span style={{ 
-            color: '#4ecdc4',
-            margin: '0 0.5rem',
-            fontSize: '1.8rem',
-          }}>
+          <span 
+            className="hero-star"
+            style={{ 
+              color: '#4ecdc4',
+              margin: '0 0.5rem',
+              fontSize: '1.8rem',
+            }}
+          >
             ✦
           </span>
           <span style={{ 
@@ -209,7 +273,7 @@ const Home = () => (
         style={{ perspective: '1000px' }}
       >
         <motion.button
-          className="relative overflow-hidden"
+          className="relative overflow-hidden hero-button"
           style={{
             padding: '1.5rem 3rem',
             fontSize: '1.4rem',
@@ -262,6 +326,7 @@ const Home = () => (
 
     {/* About Us Section */}
     <section
+      className="section-padding"
       style={{
         padding: '5rem 2rem',
         background: '#ffffff',
@@ -284,7 +349,15 @@ const Home = () => (
         ABOUT US
       </motion.h2>
       
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem', marginBottom: '3rem' }}>
+      <div 
+        className="about-grid"
+        style={{ 
+          display: 'grid', 
+          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', 
+          gap: '2rem', 
+          marginBottom: '3rem' 
+        }}
+      >
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -379,6 +452,7 @@ const Home = () => (
 
     {/* Services Grid */}
     <section
+      className="section-padding"
       style={{
         padding: '5rem 2rem',
         background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
@@ -403,12 +477,15 @@ const Home = () => (
           DIGITAL SCHOOL RESOURCES
         </motion.h3>
         
-        <div style={{ 
-          display: 'grid', 
-          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', 
-          gap: '3rem',
-          perspective: '1000px',
-        }}>
+        <div 
+          className="solutions-grid"
+          style={{ 
+            display: 'grid', 
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', 
+            gap: '3rem',
+            perspective: '1000px',
+          }}
+        >
           {[
             { title: 'QUESTION PAPER GENERATOR', desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit tempor incididunt.', icon: '📝', color: '#ff6b6b' },
             { title: 'VIRTUAL TOUR GUIDE', desc: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua enim.', icon: '🗺️', color: '#4ecdc4' },
@@ -567,6 +644,7 @@ const Home = () => (
 
     {/* Statistics Section */}
     <section
+      className="section-padding"
       style={{
         padding: '5rem 2rem',
         background: '#2563eb',
@@ -574,7 +652,14 @@ const Home = () => (
       }}
     >
       <div style={{ maxWidth: '1200px', margin: '0 auto', textAlign: 'center' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '2rem' }}>
+        <div 
+          className="stats-grid"
+          style={{ 
+            display: 'grid', 
+            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', 
+            gap: '2rem' 
+          }}
+        >
           {[
             { number: '50+', label: 'PROJECTS' },
             { number: '25+', label: 'CLIENTS' },
@@ -601,6 +686,7 @@ const Home = () => (
 
     {/* Contact Section */}
     <section
+      className="section-padding"
       style={{
         padding: '5rem 2rem',
         background: '#ffffff',
